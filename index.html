@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penarikan Hadiah VIP Exclusif</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: radial-gradient(circle at center, #1a150e, #0a0a0d);
+            color: #f3f4f6;
+            min-height: 100vh;
+        }
+
+        .gold-font {
+            font-family: 'Cinzel', serif;
+            background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-button {
+            background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+            background-size: 200% auto;
+            color: #000;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(191, 149, 63, 0.4);
+        }
+
+        .gold-button:hover {
+            background-position: right center;
+            box-shadow: 0 6px 30px rgba(252, 246, 186, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .gold-button:active {
+            transform: translateY(1px);
+        }
+
+        .glass-card {
+            background: rgba(20, 20, 25, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        }
+
+        .pulse-gold {
+            animation: pulse-border 2s infinite;
+        }
+
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(191, 149, 63, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(191, 149, 63, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(191, 149, 63, 0); }
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center p-4 min-h-screen">
+
+    <!-- Container Utama -->
+    <div id="main-card" class="glass-card max-w-md w-full rounded-3xl p-8 text-center relative overflow-hidden transition-all duration-500">
+        
+        <!-- Header Mewah -->
+        <div id="header-section">
+            <div class="inline-block border border-[#d4af37]/40 px-4 py-1 rounded-full text-xs font-semibold tracking-widest text-[#fcf6ba] uppercase mb-4">
+                VIP Access Required
+            </div>
+            <h1 class="gold-font text-2xl font-bold mb-2 tracking-wide">
+                KLAIM HADIAH EKSKLUSIF
+            </h1>
+            <p class="text-xs text-gray-400 mb-6">
+                Selesaikan verifikasi sistem otomatis untuk mengklaim paket saldo & akses premium.
+            </p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div id="progress-container" class="mb-8">
+            <div class="flex justify-between text-xs text-gray-400 mb-2">
+                <span>Status Verifikasi</span>
+                <span id="progress-text" class="text-[#fcf6ba] font-bold">3%</span>
+            </div>
+            <div class="w-full bg-gray-800 rounded-full h-2.5 p-0.5 border border-[#d4af37]/20">
+                <div id="progress-bar" class="bg-gradient-to-r from-[#b38728] via-[#fcf6ba] to-[#aa771c] h-1.5 rounded-full transition-all duration-300" style="width: 3.3%"></div>
+            </div>
+            <p id="sub-status" class="text-[10px] text-gray-500 mt-2 italic">Menyiapkan koneksi aman...</p>
+        </div>
+
+        <!-- Area Tombol -->
+        <div id="button-section" class="py-4">
+            <button id="action-btn" onclick="nextStep()" class="gold-button w-full py-4 px-6 rounded-2xl text-sm uppercase tracking-wider font-bold pulse-gold">
+                Lanjut
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer-text" class="mt-6 border-t border-gray-800 pt-4">
+            <p class="text-[10px] text-gray-500 tracking-wider uppercase">
+                Step <span id="step-number" class="text-gray-300">1</span> of 30
+            </p>
+        </div>
+    </div>
+
+    <!-- Area Prank (Sembunyi Pertama Kali) -->
+    <div id="prank-result" class="hidden flex-col items-center justify-center text-center max-w-lg w-full p-6">
+        <div class="glass-card p-6 rounded-3xl border-2 border-[#d4af37] animate-bounce mb-6 w-full">
+            <img 
+                src="https://cdn.phototourl.com/free/2026-09-16-435e852d-3918-4142-85fa-ac1dda9d2b40.jpg" 
+                alt="Arya Plenger" 
+                class="w-full h-auto rounded-2xl shadow-2xl border border-[#d4af37]/50 object-cover max-h-[70vh]"
+            />
+        </div>
+        <h1 class="gold-font text-4xl font-extrabold tracking-wider animate-pulse">
+            Hahahah Arya plenger
+        </h1>
+    </div>
+
+    <script>
+        // Daftar teks tombol dari 1 sampai 29
+        const buttonTexts = [
+            "Lanjut",
+            "Klik Lanjut Lagi",
+            "Sedikit Lagi",
+            "Verifikasi Tahap 1",
+            "Lanjut Ke Langkah 5",
+            "Proses Keamanan...",
+            "Klik Untuk Konfirmasi",
+            "Lanjut Lagi Dong",
+            "Hampir Setengah Jalan",
+            "Semangat, Dikit Lagi!",
+            "Sistem Memeriksa...",
+            "Proses Sinkronisasi",
+            "Lanjut Bro!",
+            "Jangan Menyerah!",
+            "Bentar Lagi Nih",
+            "Tinggal Dikit Lagi",
+            "Memuat Data Data...",
+            "Lanjut Tahap Akhir",
+            "Usah Mau Selesai",
+            "Beneran Dikit Lagi!",
+            "Tinggal 10 Langkah!",
+            "Klik Sekali Lagi",
+            "Tunggu Bentar...",
+            "Hampir Selesai Nih!",
+            "Tinggal 5 Lagi!",
+            "Fokus... Klik Lanjut",
+            "Tinggal 3 Langkah!",
+            "Penarikan Terakhir...",
+            "KLIK FINAL HADIAH!"
+        ];
+
+        // Status fiktif untuk mempermainkan perasaan korban
+        const subStatuses = [
+            "Menyiapkan koneksi aman...",
+            "Memeriksa ID Pengguna...",
+            "Menghubungkan ke Server VIP...",
+            "Mengunduh enkripsi data...",
+            "Menganalisis profil...",
+            "Mengkalkulasi total poin...",
+            "Menyesuaikan saldo...",
+            "Membuka kunci akses emas...",
+            "Menghubungkan ke Gateway...",
+            "Mengecek kelayakan pengguna...",
+            "Menyiapkan hadiah utama...",
+            "Mengompres data transaksi...",
+            "Sistem stabil, lanjutkan...",
+            "Sedikit hambatan... mencoba ulang...",
+            "Berhasil terhubung!",
+            "Mengecek token VIP...",
+            "Menyinkronkan ke server pusat...",
+            "Memvalidasi kode keamanan...",
+            "Proses 70% selesai...",
+            "Hampir siap dikirim...",
+            "Sistem mengonfirmasi kehadiran...",
+            "Mengunci hadiah agar tidak hangus...",
+            "Mempersiapkan gambar visual...",
+            "Menghitung kalkulasi akhir...",
+            "Memverifikasi manusia...",
+            "Tinggal selangkah lagi...",
+            "Membuka kunci server final...",
+            "Mempersiapkan kejutan...",
+            "SIAP DIBUKA!"
+        ];
+
+        let currentStep = 1;
+
+        function nextStep() {
+            currentStep++;
+
+            if (currentStep <= 30) {
+                // Update Progress Bar & Teks
+                const percentage = Math.round((currentStep / 30) * 100);
+                document.getElementById('progress-bar').style.width = percentage + '%';
+                document.getElementById('progress-text').innerText = percentage + '%';
+                document.getElementById('step-number').innerText = currentStep;
+
+                if (currentStep < 30) {
+                    // Update teks tombol & status untuk step 2 - 29
+                    document.getElementById('action-btn').innerText = buttonTexts[currentStep - 1];
+                    document.getElementById('sub-status').innerText = subStatuses[currentStep - 1];
+                } else if (currentStep === 30) {
+                    // Tombol ke-30 (Aksi Eksekusi Prank)
+                    document.getElementById('action-btn').innerText = "Buka Hadiah Sekarang!";
+                    document.getElementById('action-btn').classList.add("bg-red-600");
+                    document.getElementById('sub-status').innerText = "SELAMAT! Klik untuk melihat hasilnya!";
+                }
+            } else {
+                // TAMPILKAN PRANK (Ketika Klik Tombol Ke-30)
+                document.getElementById('main-card').style.display = 'none';
+                
+                const prankResult = document.getElementById('prank-result');
+                prankResult.classList.remove('hidden');
+                prankResult.classList.add('flex');
+            }
+        }
+    </script>
+</body>
+</html>
